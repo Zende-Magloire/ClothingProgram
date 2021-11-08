@@ -34,7 +34,7 @@ public GUI()
     M_Clothes = new DefaultListModel<>();
 
     //load clothes data
-    //loadClothes();
+    loadClothes();
 
     //set up GUI
     GUISetUp();
@@ -68,6 +68,13 @@ private void GUISetUp()
     public void valueChanged(ListSelectionEvent e)
     {
 
+    }
+
+    private void loadClothes()
+    {
+        M_Clothes.addElement("Crochet");
+        M_Clothes.addElement("Customized Clothing");
+        M_Clothes.addElement("Up-cycle clothing");
     }
 }
 
