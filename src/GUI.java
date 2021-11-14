@@ -84,7 +84,13 @@ private void GUISetUp()
     @Override
     public void valueChanged(ListSelectionEvent e)
     {
+        //ignore false alarms
+int idx = ListClothes.getSelectedIndex();
 
+if(e.getValueIsAdjusting())
+    return;
+if (idx < 0 || idx >= L_Clothes.size())
+    return;
     }
 
     private void loadClothes()
