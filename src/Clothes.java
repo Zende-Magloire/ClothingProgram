@@ -5,8 +5,10 @@ public abstract class Clothes
     private double M_Price;
     private double L_Price;
     private double XL_Price;
+    private double C_Size;
 
-public void Clothes(String d){
+public void Clothes(String d)
+{
     E_Design = d;
     //set start prices
     S_Price = 20;
@@ -19,6 +21,7 @@ public double getSmallPrice()
 {
     return S_Price;
 }
+
 public double getMediumPrice()
 {
     return M_Price;
@@ -35,6 +38,11 @@ public double getExtraLargePrice()
 public String getDesign()
 {
     return E_Design;
+}
+
+public double getSize()
+{
+    return C_Size;
 }
 
 }

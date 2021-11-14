@@ -1,10 +1,8 @@
 public class Customize extends Clothes {
-    public double Size;
     public double D_Length;
     public double D_Width;
 
-    public Customize(double size, double length, double width) {
-        Size = size;
+    public Customize(double length, double width) {
         D_Length = length;
         D_Width = width;
     }
@@ -21,10 +19,6 @@ public class Customize extends Clothes {
             return 0;
         else
             return D_Width;
-    }
-
-    public double getSize() {
-        return Size;
     }
 
 }

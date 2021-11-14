@@ -57,8 +57,9 @@ private void GUISetUp()
     LBL_Password = new JTextField(15);
     BTN_login = new JButton("Sign in");
     BTN_login.addActionListener(this);
-    topPanel.add(new JLabel("Log in"));
+    topPanel.add(new JLabel("Username: "));
     topPanel.add(LBL_Username);
+    topPanel.add(new JLabel("Password: "));
     topPanel.add(LBL_Password);
     topPanel.add(BTN_login);
     add(topPanel, BorderLayout.PAGE_START);
