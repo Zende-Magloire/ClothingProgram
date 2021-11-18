@@ -91,7 +91,20 @@ if(e.getValueIsAdjusting())
     return;
 if (idx < 0 || idx >= L_Clothes.size())
     return;
+
+if (M_Clothes.equals("Crochet"));
+    JPopupMenu CrochetOptions = new JPopupMenu("options");
+    JMenuItem top = new JMenuItem("Top");
+    JMenuItem bottom = new JMenuItem("Bottom");
+    JMenuItem swimsuit = new JMenuItem("Swimsuit");
+    CrochetOptions.add(top);
+    CrochetOptions.add(bottom);
+    CrochetOptions.add(swimsuit);
+
+        // add to somewhere
+    setVisible(true);
     }
+
 
     private void loadClothes()
     {

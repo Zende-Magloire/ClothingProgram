@@ -25,7 +25,6 @@ public class Crochet extends Clothes {
         return Waist_M;
     }
 
-
 }
 
 
