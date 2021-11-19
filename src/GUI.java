@@ -4,12 +4,16 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class GUI extends JFrame implements ListSelectionListener, ActionListener {
+
     private ArrayList<Clothes> L_Clothes;
     private DefaultListModel<String> M_Clothes;
 
+    private JPopupMenu CrochetOptions;
     private JList<String> ListClothes;
     private JLabel LBL_article;
     private JLabel LBL_type;
@@ -47,6 +51,7 @@ public GUI()
 
 private void GUISetUp()
 {
+    //frame set up
     setTitle("Zen's Designs");
     setSize(800,600);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -67,6 +72,71 @@ private void GUISetUp()
     //list set up
     ListClothes = new JList<String>(M_Clothes);
     ListClothes.addListSelectionListener(this);
+
+    //popup menu set up
+    //Crochet menu
+    JPopupMenu CrochetOptions = new JPopupMenu("Select");
+    JMenuItem top = new JMenuItem("Top");
+    JMenuItem bottom = new JMenuItem("Bottom");
+    JMenuItem swimsuit = new JMenuItem("Swimsuit");
+    CrochetOptions.add(top);
+    CrochetOptions.add(bottom);
+    CrochetOptions.add(swimsuit);
+    
+
+    ListClothes.addMouseListener(new MouseAdapter() {
+        @Override
+            public void mouseClicked(MouseEvent e) {
+
+                CrochetOptions.setVisible(true);
+                CrochetOptions.setSize(400,400);
+                CrochetOptions.setLocation(407,107);
+                CrochetOptions.setBorder(null)
+                ;}
+
+        });
+
+    //customizable menu
+    JPopupMenu CustomOptions = new JPopupMenu("Select");
+    JMenuItem dress = new JMenuItem("Dress");
+    JMenuItem other = new JMenuItem("Other");
+    CustomOptions.add(top);
+    CustomOptions.add(bottom);
+    CustomOptions.add(swimsuit);
+    CustomOptions.add(dress);
+    CustomOptions.add(other);
+
+    ListClothes.addMouseListener(new MouseAdapter() {
+        @Override
+            public void mouseClicked(MouseEvent e) {
+
+                CustomOptions.setVisible(true);
+                CustomOptions.setSize(400,400);
+                CustomOptions.setLocation(407,107);
+                CustomOptions.setBorder(null);}
+
+        });
+
+    //up-cycle menu
+    JPopupMenu UpcycleOptions = new JPopupMenu("Select");
+    CustomOptions.add(top);
+    CustomOptions.add(bottom);
+    CustomOptions.add(swimsuit);
+    CustomOptions.add(dress);
+    CustomOptions.add(other);
+
+    ListClothes.addMouseListener(new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+
+                UpcycleOptions.setVisible(true);
+                UpcycleOptions.setSize(400,400);
+                UpcycleOptions.setLocation(407,107);
+                UpcycleOptions.setBorder(null);}
+
+    });
+
+    //scroll panel and split pane
     JScrollPane Options = new JScrollPane();
     Options.setLayout(new ScrollPaneLayout());
     Options.setViewportView(ListClothes);
@@ -85,26 +155,12 @@ private void GUISetUp()
     public void valueChanged(ListSelectionEvent e)
     {
         //ignore false alarms
-int idx = ListClothes.getSelectedIndex();
-
-if(e.getValueIsAdjusting())
-    return;
-if (idx < 0 || idx >= L_Clothes.size())
-    return;
-
-if (M_Clothes.equals("Crochet"));
-    JPopupMenu CrochetOptions = new JPopupMenu("options");
-    JMenuItem top = new JMenuItem("Top");
-    JMenuItem bottom = new JMenuItem("Bottom");
-    JMenuItem swimsuit = new JMenuItem("Swimsuit");
-    CrochetOptions.add(top);
-    CrochetOptions.add(bottom);
-    CrochetOptions.add(swimsuit);
-
-        // add to somewhere
-    setVisible(true);
+    int idx = ListClothes.getSelectedIndex();
+    if(e.getValueIsAdjusting())
+      return;
+    if (idx < 0 || idx >= L_Clothes.size())
+      return;
     }
-
 
     private void loadClothes()
     {
