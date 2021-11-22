@@ -73,68 +73,58 @@ private void GUISetUp()
     ListClothes = new JList<String>(M_Clothes);
     ListClothes.addListSelectionListener(this);
 
-    //popup menu set up
     //Crochet menu
-    JPopupMenu CrochetOptions = new JPopupMenu("Select");
-    JMenuItem top = new JMenuItem("Top");
-    JMenuItem bottom = new JMenuItem("Bottom");
+    CrochetOptions = new JPopupMenu("Select");
+    JMenuItem top = new JMenuItem("C Top");
+    top.addActionListener(this);
+    JMenuItem bottom = new JMenuItem("C Bottom");
+    bottom.addActionListener(this);
     JMenuItem swimsuit = new JMenuItem("Swimsuit");
+
     CrochetOptions.add(top);
     CrochetOptions.add(bottom);
     CrochetOptions.add(swimsuit);
-    
 
-    ListClothes.addMouseListener(new MouseAdapter() {
-        @Override
-            public void mouseClicked(MouseEvent e) {
 
-                CrochetOptions.setVisible(true);
-                CrochetOptions.setSize(400,400);
-                CrochetOptions.setLocation(407,107);
-                CrochetOptions.setBorder(null)
-                ;}
-
-        });
-
-    //customizable menu
-    JPopupMenu CustomOptions = new JPopupMenu("Select");
-    JMenuItem dress = new JMenuItem("Dress");
-    JMenuItem other = new JMenuItem("Other");
-    CustomOptions.add(top);
-    CustomOptions.add(bottom);
-    CustomOptions.add(swimsuit);
-    CustomOptions.add(dress);
-    CustomOptions.add(other);
-
-    ListClothes.addMouseListener(new MouseAdapter() {
-        @Override
-            public void mouseClicked(MouseEvent e) {
-
-                CustomOptions.setVisible(true);
-                CustomOptions.setSize(400,400);
-                CustomOptions.setLocation(407,107);
-                CustomOptions.setBorder(null);}
-
-        });
-
-    //up-cycle menu
-    JPopupMenu UpcycleOptions = new JPopupMenu("Select");
-    CustomOptions.add(top);
-    CustomOptions.add(bottom);
-    CustomOptions.add(swimsuit);
-    CustomOptions.add(dress);
-    CustomOptions.add(other);
-
-    ListClothes.addMouseListener(new MouseAdapter() {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-
-                UpcycleOptions.setVisible(true);
-                UpcycleOptions.setSize(400,400);
-                UpcycleOptions.setLocation(407,107);
-                UpcycleOptions.setBorder(null);}
-
-    });
+//    //customizable menu
+//    JPopupMenu CustomOptions = new JPopupMenu("Select");
+//    JMenuItem dress = new JMenuItem("Dress");
+//    JMenuItem other = new JMenuItem("Other");
+//    CustomOptions.add(top);
+//    CustomOptions.add(bottom);
+//    CustomOptions.add(swimsuit);
+//    CustomOptions.add(dress);
+//    CustomOptions.add(other);
+//
+//    ListClothes.addMouseListener(new MouseAdapter() {
+//        @Override
+//            public void mouseClicked(MouseEvent e) {
+//
+//                CustomOptions.setVisible(true);
+//                CustomOptions.setSize(400,400);
+//                CustomOptions.setLocation(407,107);
+//                CustomOptions.setBorder(null);}
+//
+//        });
+//
+//    //up-cycle menu
+//    JPopupMenu UpcycleOptions = new JPopupMenu("Select");
+//    CustomOptions.add(top);
+//    CustomOptions.add(bottom);
+//    CustomOptions.add(swimsuit);
+//    CustomOptions.add(dress);
+//    CustomOptions.add(other);
+//
+//    ListClothes.addMouseListener(new MouseAdapter() {
+//        @Override
+//        public void mouseClicked(MouseEvent e) {
+//
+//                UpcycleOptions.setVisible(true);
+//                UpcycleOptions.setSize(400,400);
+//                UpcycleOptions.setLocation(407,107);
+//                UpcycleOptions.setBorder(null);}
+//
+//    });
 
     //scroll panel and split pane
     JScrollPane Options = new JScrollPane();
@@ -155,11 +145,21 @@ private void GUISetUp()
     public void valueChanged(ListSelectionEvent e)
     {
         //ignore false alarms
-    int idx = ListClothes.getSelectedIndex();
-    if(e.getValueIsAdjusting())
-      return;
-    if (idx < 0 || idx >= L_Clothes.size())
-      return;
+        int idx = ListClothes.getSelectedIndex();
+        if(e.getValueIsAdjusting())
+          return;
+        if (idx < 0 || idx >= L_Clothes.size())
+          return;
+
+        if (idx == 0){
+            ListClothes.setComponentPopupMenu(CrochetOptions);
+            CrochetOptions.show(ListClothes,0,0);
+            //popup menu set up
+            //CrochetOptions.setVisible(true);
+            //CrochetOptions.setSize(400,400);
+            //CrochetOptions.setLocation(407,107);
+            //CrochetOptions.setBorder(null);
+        }
     }
 
     private void loadClothes()
@@ -172,11 +172,27 @@ private void GUISetUp()
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        //exception handle here
+        Object source = e.getSource();
 
-        String welcome = "Welcome to Zen's Designs! Please select your " +
-                "clothing choice from the menu on the left.";
-        JOptionPane.showMessageDialog(null, welcome);
+        if (source instanceof JButton)
+        {
+            JButton button = (JButton)source;
+            String welcome = "Welcome to Zen's Designs! Please select your " +
+                    "clothing choice from the menu on the left.";
+            JOptionPane.showMessageDialog(null, welcome);
+        }
+        else if (source instanceof JMenuItem)
+        {
+            JMenuItem mitem = (JMenuItem)source;
+
+            if (mitem.getText() == "C Top")
+            {
+                System.out.println("hi");
+                //CrochetOptions.hide();
+            }
+        }
+
+        //exception handle here
 
 
     }
