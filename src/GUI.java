@@ -33,11 +33,10 @@ public GUI()
     GUISetUp();
 }
 
-private void GUISetUp()
-{
+private void GUISetUp() {
     //frame set up
     setTitle("Zen's Designs");
-    setSize(800,600);
+    setSize(800, 600);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
     setLocationRelativeTo(null);
@@ -53,70 +52,51 @@ private void GUISetUp()
     topPanel.add(new JLabel("Password: "));
     topPanel.add(LBL_Password);
     topPanel.add(BTN_login);
-    add(topPanel, BorderLayout.PAGE_START);
+    add(topPanel, BorderLayout.SOUTH);
 
     //welcome message
     JPanel Welcome_m = new JPanel();
- Welcome_m.add(new JLabel("Welcome to Zen's Designs! Sign in to shop with rewards or select an item from" +
-         " the menu to continue."));
-    add(Welcome_m,BorderLayout.CENTER);
+    Welcome_m.add(new JLabel("Welcome to Zen's Designs! Sign in to shop with rewards or select an item from" +
+            " the menu to continue."));
+    add(Welcome_m, BorderLayout.CENTER);
 
+    //crochet menu set up
+    Menu_bar = new JMenuBar();
+    Crochet = new JMenu("Crochet");
+    JMenuItem top = new JMenuItem("Top");
+    Crochet.add(top);
+    JMenuItem bottom = new JMenuItem("Bottom");
+    Crochet.add(bottom);
+    JMenuItem swimsuit = new JMenuItem("Swimsuit");
+    Crochet.add(swimsuit);
+    Menu_bar.add(Crochet);
 
-//    //Crochet menu
-//    CrochetOptions = new JPopupMenu("Select");
-//    JMenuItem top = new JMenuItem("C Top");
-//    top.addActionListener(this);
-//    JMenuItem bottom = new JMenuItem("C Bottom");
-//    bottom.addActionListener(this);
-//    JMenuItem swimsuit = new JMenuItem("Swimsuit");
-//
-//    CrochetOptions.add(top);
-//    CrochetOptions.add(bottom);
-//    CrochetOptions.add(swimsuit);
+    //Custom menu set up
+    Customized_design = new JMenu("Custom design");
+    Customized_design.add(top);
+    Customized_design.add(bottom);
+    Customized_design.add(swimsuit);
+    JMenuItem dress = new JMenuItem("Dress");
+    Customized_design.add(swimsuit);
+    JMenuItem other = new JMenuItem("Other");
+    Customized_design.add(swimsuit);
+    Menu_bar.add(Customized_design);
 
+    //Up-cycle menu set up
+    Up_cycle = new JMenu("Up-cycle");
+    Up_cycle.add(top);
+    Up_cycle.add(bottom);
+    Up_cycle.add(swimsuit);
+    Up_cycle.add(swimsuit);
+    Up_cycle.add(swimsuit);
+    Menu_bar.add(Up_cycle);
 
-//    //customizable menu
-//    JPopupMenu CustomOptions = new JPopupMenu("Select");
-//    JMenuItem dress = new JMenuItem("Dress");
-//    JMenuItem other = new JMenuItem("Other");
-//    CustomOptions.add(top);
-//    CustomOptions.add(bottom);
-//    CustomOptions.add(swimsuit);
-//    CustomOptions.add(dress);
-//    CustomOptions.add(other);
-//
-//    ListClothes.addMouseListener(new MouseAdapter() {
-//        @Override
-//            public void mouseClicked(MouseEvent e) {
-//
-//                CustomOptions.setVisible(true);
-//                CustomOptions.setSize(400,400);
-//                CustomOptions.setLocation(407,107);
-//                CustomOptions.setBorder(null);}
-//
-//        });
-//
-//    //up-cycle menu
-//    JPopupMenu UpcycleOptions = new JPopupMenu("Select");
-//    CustomOptions.add(top);
-//    CustomOptions.add(bottom);
-//    CustomOptions.add(swimsuit);
-//    CustomOptions.add(dress);
-//    CustomOptions.add(other);
-//
-//    ListClothes.addMouseListener(new MouseAdapter() {
-//        @Override
-//        public void mouseClicked(MouseEvent e) {
-//
-//                UpcycleOptions.setVisible(true);
-//                UpcycleOptions.setSize(400,400);
-//                UpcycleOptions.setLocation(407,107);
-//                UpcycleOptions.setBorder(null);}
-//
-//    });
+    setJMenuBar(Menu_bar);
+    Menu_bar.setVisible(true);
+    Menu_bar.setSize(800, 700);
+    add(Menu_bar, BorderLayout.PAGE_START);
 
 }
-
 
     @Override
     public void actionPerformed(ActionEvent e)
