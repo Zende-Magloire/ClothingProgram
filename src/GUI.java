@@ -1,22 +1,14 @@
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 
-public class GUI extends JFrame implements ListSelectionListener, ActionListener {
+public class GUI extends JFrame implements ActionListener {
 
-    private ArrayList<Clothes> L_Clothes;
-    private DefaultListModel<String> M_Clothes;
-
-    private JPopupMenu CrochetOptions;
-    private JList<String> ListClothes;
-    private JLabel LBL_article;
-    private JLabel LBL_type;
+    private JMenuBar Menu_bar;
+    private JMenu Crochet;
+    private JMenu Customized_design;
+    private JMenu Up_cycle;
     private JTextField LBL_Username;
     private JTextField LBL_Password;
     private JButton BTN_login;
@@ -37,16 +29,8 @@ public class GUI extends JFrame implements ListSelectionListener, ActionListener
 
 public GUI()
 {
-    //set up member fields
-    L_Clothes = new ArrayList<>();
-    M_Clothes = new DefaultListModel<>();
-
-    //load clothes data
-    loadClothes();
-
     //set up GUI
     GUISetUp();
-
 }
 
 private void GUISetUp()
@@ -55,6 +39,8 @@ private void GUISetUp()
     setTitle("Zen's Designs");
     setSize(800,600);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setVisible(true);
+    setLocationRelativeTo(null);
 
     //log in panel
     JPanel topPanel = new JPanel();
@@ -69,21 +55,24 @@ private void GUISetUp()
     topPanel.add(BTN_login);
     add(topPanel, BorderLayout.PAGE_START);
 
-    //list set up
-    ListClothes = new JList<String>(M_Clothes);
-    ListClothes.addListSelectionListener(this);
+    //welcome message
+    JPanel Welcome_m = new JPanel();
+ Welcome_m.add(new JLabel("Welcome to Zen's Designs! Sign in to shop with rewards or select an item from" +
+         " the menu to continue."));
+    add(Welcome_m,BorderLayout.CENTER);
 
-    //Crochet menu
-    CrochetOptions = new JPopupMenu("Select");
-    JMenuItem top = new JMenuItem("C Top");
-    top.addActionListener(this);
-    JMenuItem bottom = new JMenuItem("C Bottom");
-    bottom.addActionListener(this);
-    JMenuItem swimsuit = new JMenuItem("Swimsuit");
 
-    CrochetOptions.add(top);
-    CrochetOptions.add(bottom);
-    CrochetOptions.add(swimsuit);
+//    //Crochet menu
+//    CrochetOptions = new JPopupMenu("Select");
+//    JMenuItem top = new JMenuItem("C Top");
+//    top.addActionListener(this);
+//    JMenuItem bottom = new JMenuItem("C Bottom");
+//    bottom.addActionListener(this);
+//    JMenuItem swimsuit = new JMenuItem("Swimsuit");
+//
+//    CrochetOptions.add(top);
+//    CrochetOptions.add(bottom);
+//    CrochetOptions.add(swimsuit);
 
 
 //    //customizable menu
@@ -126,48 +115,8 @@ private void GUISetUp()
 //
 //    });
 
-    //scroll panel and split pane
-    JScrollPane Options = new JScrollPane();
-    Options.setLayout(new ScrollPaneLayout());
-    Options.setViewportView(ListClothes);
-
-    JPanel clothesPanel = new JPanel();
-
-    JSplitPane Pane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, Options, clothesPanel);
-    Pane.setDividerLocation(150);
-    add(Pane, BorderLayout.CENTER);
-
-    setLocationRelativeTo(null);
-    setVisible(true);
 }
 
-    @Override
-    public void valueChanged(ListSelectionEvent e)
-    {
-        //ignore false alarms
-        int idx = ListClothes.getSelectedIndex();
-        if(e.getValueIsAdjusting())
-          return;
-        if (idx < 0 || idx >= L_Clothes.size())
-          return;
-
-        if (idx == 0){
-            ListClothes.setComponentPopupMenu(CrochetOptions);
-            CrochetOptions.show(ListClothes,0,0);
-            //popup menu set up
-            //CrochetOptions.setVisible(true);
-            //CrochetOptions.setSize(400,400);
-            //CrochetOptions.setLocation(407,107);
-            //CrochetOptions.setBorder(null);
-        }
-    }
-
-    private void loadClothes()
-    {
-        M_Clothes.addElement("Crochet");
-        M_Clothes.addElement("Customized Clothing");
-        M_Clothes.addElement("Up-cycle clothing");
-    }
 
     @Override
     public void actionPerformed(ActionEvent e)
@@ -181,20 +130,10 @@ private void GUISetUp()
                     "clothing choice from the menu on the left.";
             JOptionPane.showMessageDialog(null, welcome);
         }
-        else if (source instanceof JMenuItem)
-        {
-            JMenuItem mitem = (JMenuItem)source;
-
-            if (mitem.getText() == "C Top")
-            {
-                System.out.println("hi");
-                //CrochetOptions.hide();
-            }
-        }
 
         //exception handle here
 
-
     }
+
 }
 
