@@ -10,7 +10,7 @@ public abstract class Clothes
 public void Clothes(String d)
 {
     E_Design = d;
-    //set start prices
+    //set prices
     S_Price = 20;
     M_Price = 25;
     L_Price = 30;

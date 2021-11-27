@@ -77,9 +77,9 @@ private void GUISetUp() {
     Customized_design.add(bottom);
     Customized_design.add(swimsuit);
     JMenuItem dress = new JMenuItem("Dress");
-    Customized_design.add(swimsuit);
+    Customized_design.add(dress);
     JMenuItem other = new JMenuItem("Other");
-    Customized_design.add(swimsuit);
+    Customized_design.add(other);
     Menu_bar.add(Customized_design);
 
     //Up-cycle menu set up
@@ -87,13 +87,12 @@ private void GUISetUp() {
     Up_cycle.add(top);
     Up_cycle.add(bottom);
     Up_cycle.add(swimsuit);
-    Up_cycle.add(swimsuit);
-    Up_cycle.add(swimsuit);
+    Up_cycle.add(dress);
+    Up_cycle.add(other);
     Menu_bar.add(Up_cycle);
 
     setJMenuBar(Menu_bar);
     Menu_bar.setVisible(true);
-    Menu_bar.setSize(800, 700);
     add(Menu_bar, BorderLayout.PAGE_START);
 
 }
@@ -107,7 +106,7 @@ private void GUISetUp() {
         {
             JButton button = (JButton)source;
             String welcome = "Welcome to Zen's Designs! Please select your " +
-                    "clothing choice from the menu on the left.";
+                    "clothing choice from the menu above.";
             JOptionPane.showMessageDialog(null, welcome);
         }
 
