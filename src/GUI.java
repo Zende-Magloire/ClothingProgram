@@ -5,10 +5,30 @@ import java.awt.event.ActionListener;
 
 public class GUI extends JFrame implements ActionListener {
 
+    //menu
     private JMenuBar Menu_bar;
     private JMenu Crochet;
     private JMenu Customized_design;
-    private JMenu Up_cycle;
+    //user input info
+    private JPanel InfoInput;
+    private JTextField Design;
+    private JTextField Bust;
+    private JTextField Hips;
+    private JButton Small;
+    private JButton Medium;
+    private JButton Large;
+    private JButton Extra_Large;
+    private JButton Review;
+    private JPanel C_InfoInput;
+    private JTextField Waist;
+    private JTextField Length;
+    private JTextField Width;
+    private JButton C_Small;
+    private JButton C_Medium;
+    private JButton C_Large;
+    private JButton C_Extra_Large;
+    private JButton C_Review;
+    //sign in
     private JTextField LBL_Username;
     private JTextField LBL_Password;
     private JButton BTN_login;
@@ -52,7 +72,7 @@ private void GUISetUp() {
     topPanel.add(new JLabel("Password: "));
     topPanel.add(LBL_Password);
     topPanel.add(BTN_login);
-    add(topPanel, BorderLayout.SOUTH);
+    add(topPanel, BorderLayout.PAGE_END);
 
     //welcome message
     JPanel Welcome_m = new JPanel();
@@ -60,46 +80,108 @@ private void GUISetUp() {
             " the menu to continue."));
     add(Welcome_m, BorderLayout.CENTER);
 
-    //crochet menu set up
+    // menu set up
     Menu_bar = new JMenuBar();
     Crochet = new JMenu("Crochet");
+    Customized_design = new JMenu("Custom design");
+
+    //crochet menu set up
     JMenuItem top = new JMenuItem("Top");
+    top.addActionListener(this);
     Crochet.add(top);
     JMenuItem bottom = new JMenuItem("Bottom");
+    bottom.addActionListener(this);
     Crochet.add(bottom);
     JMenuItem swimsuit = new JMenuItem("Swimsuit");
+    swimsuit.addActionListener(this);
     Crochet.add(swimsuit);
     Menu_bar.add(Crochet);
 
     //Custom menu set up
-    Customized_design = new JMenu("Custom design");
-    Customized_design.add(top);
-    Customized_design.add(bottom);
-    Customized_design.add(swimsuit);
+    JMenuItem C_top = new JMenuItem("Top");
+    C_top.addActionListener(this);
+    Customized_design.add(C_top);
+    JMenuItem C_bottom = new JMenuItem("Bottom");
+    C_bottom.addActionListener(this);
+    Customized_design.add(C_bottom);
+    JMenuItem C_swimsuit = new JMenuItem("Swimsuit");
+    C_swimsuit.addActionListener(this);
+    Customized_design.add(C_swimsuit);
     JMenuItem dress = new JMenuItem("Dress");
+    dress.addActionListener(this);
     Customized_design.add(dress);
     JMenuItem other = new JMenuItem("Other");
+    other.addActionListener(this);
     Customized_design.add(other);
     Menu_bar.add(Customized_design);
-
-    //Up-cycle menu set up
-    Up_cycle = new JMenu("Up-cycle");
-    Up_cycle.add(top);
-    Up_cycle.add(bottom);
-    Up_cycle.add(swimsuit);
-    Up_cycle.add(dress);
-    Up_cycle.add(other);
-    Menu_bar.add(Up_cycle);
 
     setJMenuBar(Menu_bar);
     Menu_bar.setVisible(true);
     add(Menu_bar, BorderLayout.PAGE_START);
+
+    //info input GUI for crochet
+    JPanel InfoInput = new JPanel();
+    Design = new JTextField(85);
+    //clothing description
+    InfoInput.add(new JLabel("Please enter a detailed description of your desired design"));
+    InfoInput.add(Design);
+    //measurements
+    Bust = new JTextField(5);
+    InfoInput.add(new JLabel("Please enter your bust measurement (inches)"));
+    InfoInput.add(Bust);
+    Hips = new JTextField(5);
+    InfoInput.add(new JLabel("Please enter your hip measurement (inches)"));
+    InfoInput.add(Hips);
+    Waist = new JTextField(5);
+    InfoInput.add(new JLabel("Please enter your waist measurement (inches)"));
+    InfoInput.add(Waist);
+    //size
+    InfoInput.add(new JLabel("Please select your clothing size:"));
+    Small = new JButton("Small");
+    Medium = new JButton("Medium");
+    Large = new JButton("Large");
+    Extra_Large = new JButton("Extra Large");
+    InfoInput.add(Small);
+    InfoInput.add(Medium);
+    InfoInput.add(Large);
+    InfoInput.add(Extra_Large);
+    //review order
+    Review = new JButton("Review your order.");
+    InfoInput.add(Review);
+
+    //info input GUI for customized clothes
+    JPanel C_InfoInput = new JPanel();
+    Design = new JTextField(85);
+    //clothing description
+    InfoInput.add(new JLabel("Please enter a detailed description of your desired design"));
+    InfoInput.add(Design);
+    //measurements
+    Length = new JTextField(5);
+    InfoInput.add(new JLabel("Please enter how long you want your design to be (inches)"));
+    InfoInput.add(Length);
+    Width = new JTextField(5);
+    InfoInput.add(new JLabel("Please enter how wide you want your design to be (inches)"));
+    InfoInput.add(Width);
+    //size
+    InfoInput.add(new JLabel("Please select your clothing size:"));
+    C_Small = new JButton("Small");
+    C_Medium = new JButton("Medium");
+    C_Large = new JButton("Large");
+    C_Extra_Large = new JButton("Extra Large");
+    InfoInput.add(C_Small);
+    InfoInput.add(C_Medium);
+    InfoInput.add(C_Large);
+    InfoInput.add(C_Extra_Large);
+    C_Extra_Large.addActionListener(this);
+    C_Review = new JButton("Review your order.");
+    InfoInput.add(C_Review);
 
 }
 
     @Override
     public void actionPerformed(ActionEvent e)
     {
+
         Object source = e.getSource();
 
         if (source instanceof JButton)
