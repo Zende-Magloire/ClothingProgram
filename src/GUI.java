@@ -14,19 +14,13 @@ public class GUI extends JFrame implements ActionListener {
     private JTextField Design;
     private JTextField Bust;
     private JTextField Hips;
-    private JButton Small;
-    private JButton Medium;
-    private JButton Large;
-    private JButton Extra_Large;
+    private JTextField Waist;
+    private JButton [] Sizes;
     private JButton Review;
     private JPanel C_InfoInput;
-    private JTextField Waist;
     private JTextField Length;
     private JTextField Width;
-    private JButton C_Small;
-    private JButton C_Medium;
-    private JButton C_Large;
-    private JButton C_Extra_Large;
+    private JButton [] C_Sizes;
     private JButton C_Review;
     //sign in
     private JTextField LBL_Username;
@@ -137,14 +131,19 @@ private void GUISetUp() {
     InfoInput.add(Waist);
     //size
     InfoInput.add(new JLabel("Please select your clothing size:"));
-    Small = new JButton("Small");
-    Medium = new JButton("Medium");
-    Large = new JButton("Large");
-    Extra_Large = new JButton("Extra Large");
-    InfoInput.add(Small);
-    InfoInput.add(Medium);
-    InfoInput.add(Large);
-    InfoInput.add(Extra_Large);
+    Sizes = new JButton[4];
+    Sizes[0] = new JButton("Small");
+    Sizes[0].addActionListener(this);
+    Sizes[1] = new JButton("Medium");
+    Sizes[1].addActionListener(this);
+    Sizes[2] = new JButton("Large");
+    Sizes[2].addActionListener(this);
+    Sizes[3] = new JButton("Extra Large");
+    Sizes[3].addActionListener(this);
+    InfoInput.add(Sizes[0]);
+    InfoInput.add(Sizes[1]);
+    InfoInput.add(Sizes[2]);
+    InfoInput.add(Sizes[3]);
     //review order
     Review = new JButton("Review your order.");
     InfoInput.add(Review);
@@ -153,28 +152,34 @@ private void GUISetUp() {
     JPanel C_InfoInput = new JPanel();
     Design = new JTextField(85);
     //clothing description
-    InfoInput.add(new JLabel("Please enter a detailed description of your desired design"));
-    InfoInput.add(Design);
+    C_InfoInput.add(new JLabel("Please enter a detailed description of your desired design"));
+    C_InfoInput.add(Design);
     //measurements
     Length = new JTextField(5);
-    InfoInput.add(new JLabel("Please enter how long you want your design to be (inches)"));
-    InfoInput.add(Length);
+    C_InfoInput.add(new JLabel("Please enter how long you want your design to be (inches)"));
+    C_InfoInput.add(Length);
     Width = new JTextField(5);
-    InfoInput.add(new JLabel("Please enter how wide you want your design to be (inches)"));
-    InfoInput.add(Width);
+    C_InfoInput.add(new JLabel("Please enter how wide you want your design to be (inches)"));
+    C_InfoInput.add(Width);
     //size
-    InfoInput.add(new JLabel("Please select your clothing size:"));
-    C_Small = new JButton("Small");
-    C_Medium = new JButton("Medium");
-    C_Large = new JButton("Large");
-    C_Extra_Large = new JButton("Extra Large");
-    InfoInput.add(C_Small);
-    InfoInput.add(C_Medium);
-    InfoInput.add(C_Large);
-    InfoInput.add(C_Extra_Large);
-    C_Extra_Large.addActionListener(this);
+    C_InfoInput.add(new JLabel("Please select your clothing size:"));
+    C_Sizes = new JButton[4];
+    C_Sizes[0] = new JButton("Small");
+    C_Sizes[0].addActionListener(this);
+    C_Sizes[1] = new JButton("Medium");
+    C_Sizes[1].addActionListener(this);
+    C_Sizes[2] = new JButton("Large");
+    C_Sizes[2].addActionListener(this);
+    C_Sizes[3] = new JButton("Extra Large");
+    C_Sizes[3].addActionListener(this);
+    C_InfoInput.add(C_Sizes[0]);
+    C_InfoInput.add(C_Sizes[1]);
+    C_InfoInput.add(C_Sizes[2]);
+    C_InfoInput.add(C_Sizes[3]);
     C_Review = new JButton("Review your order.");
-    InfoInput.add(C_Review);
+    C_InfoInput.add(C_Review);
+
+    add(InfoInput, BorderLayout.CENTER);
 
 }
 
