@@ -66,7 +66,7 @@ private void GUISetUp() {
     topPanel.add(new JLabel("Password: "));
     topPanel.add(LBL_Password);
     topPanel.add(BTN_login);
-    add(topPanel, BorderLayout.PAGE_END);
+    add(topPanel, BorderLayout.PAGE_START);
 
     //welcome message
     JPanel Welcome_m = new JPanel();
@@ -108,10 +108,6 @@ private void GUISetUp() {
     other.addActionListener(this);
     Customized_design.add(other);
     Menu_bar.add(Customized_design);
-
-    setJMenuBar(Menu_bar);
-    Menu_bar.setVisible(true);
-    add(Menu_bar, BorderLayout.PAGE_START);
 
     //info input GUI for crochet
     JPanel InfoInput = new JPanel();
@@ -179,7 +175,8 @@ private void GUISetUp() {
     C_Review = new JButton("Review your order.");
     C_InfoInput.add(C_Review);
 
-    add(InfoInput, BorderLayout.CENTER);
+    add(C_InfoInput, BorderLayout.CENTER);
+    setJMenuBar(Menu_bar);
 
 }
 
@@ -192,9 +189,19 @@ private void GUISetUp() {
         if (source instanceof JButton)
         {
             JButton button = (JButton)source;
-            String welcome = "Welcome to Zen's Designs! Please select your " +
-                    "clothing choice from the menu above.";
-            JOptionPane.showMessageDialog(null, welcome);
+
+            if (button == C_Sizes[0]){
+                String price = "Small";
+                JOptionPane.showMessageDialog(null, price);
+            }
+            else if (button == C_Sizes[1]){
+                String price = "Medium";
+                JOptionPane.showMessageDialog(null, price);
+            }
+        }
+        else if (source instanceof JMenuItem){
+            JMenuItem item = (JMenuItem) source;
+
         }
 
         //exception handle here
