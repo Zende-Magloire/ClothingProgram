@@ -203,7 +203,7 @@ public class GUI extends JFrame implements ActionListener
         C_ReviewPanel = new JPanel();
         C_Review = new JButton("Proceed to cart");
         C_ReviewPanel.add(C_Review);
-        
+
         //show menu bar
         setJMenuBar(Menu_bar);
 
@@ -228,14 +228,14 @@ public class GUI extends JFrame implements ActionListener
                 password = LBL_Password.getText();
                 if (username == null || username.isEmpty())
                 {
-                    JOptionPane.showMessageDialog(this, "Please enter your username",
-                            "Input error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "You did not enter a username.",
+                            "Please enter your username", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 else if (password == null || password.isEmpty())
                 {
-                    JOptionPane.showMessageDialog(this, "Please enter your password",
-                            "Input error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "You did not enter a password.",
+                            "Please enter your password", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 else
@@ -246,7 +246,7 @@ public class GUI extends JFrame implements ActionListener
                 }
             }
 
-//          set prices for crochet
+            //set prices for crochet
             if (button == Sizes[0])
             {
                 Crochet items = new Crochet();
@@ -267,7 +267,7 @@ public class GUI extends JFrame implements ActionListener
                 Crochet items = new Crochet();
                 items.setPrice(25);
             }
-//          set prices for custom
+            //set prices for custom
             if (button == C_Sizes[0])
             {
                 Customize c_items = new Customize();
@@ -289,11 +289,11 @@ public class GUI extends JFrame implements ActionListener
                 c_items.setPrice(30);
             }
 
-//          review and finalize order
+            //review and finalize order
             if (button == Review)
             {
                 DisplayPanel = new JPanel();
-                //display order
+//                  display order
                 FinalPanel = new JPanel();
                 Final = new JButton("Place order");
                 DisplayPanel.add(FinalPanel);
@@ -301,10 +301,10 @@ public class GUI extends JFrame implements ActionListener
             if (button == C_Review)
             {
                 C_DisplayPanel = new JPanel();
-                //display order
+//                  display order
                 C_FinalPanel = new JPanel();
                 C_Final = new JButton("Place order");
-                DisplayPanel.add(C_FinalPanel);
+                C_DisplayPanel.add(C_FinalPanel);
             }
             if (button == Final)
             {
@@ -321,13 +321,15 @@ public class GUI extends JFrame implements ActionListener
 
             if (button == Cart)
             {
-                //display previous order
+//                  display previous order
             }
 
         }
-        else if (source instanceof JMenu)
+
+        //show info input panels
+        else if (source instanceof JMenuItem)
         {
-            JMenu item = (JMenu) source;
+            JMenuItem item = (JMenuItem) source;
 
 //           if (item == top)
 //           {
@@ -341,6 +343,7 @@ public class GUI extends JFrame implements ActionListener
 //            add(C_InfoInput, BorderLayout.NORTH);
 //            add(C_ReviewPanel, BorderLayout.PAGE_END)
 //         }
+
         }
 
     }
