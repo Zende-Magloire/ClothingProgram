@@ -25,14 +25,10 @@ public class GUI extends JFrame implements ActionListener
     private JTextField Hips;
     private JTextField Waist;
     private JButton [] Sizes;
-    private JButton Review;
-    private JPanel C_ReviewPanel;
     private JPanel C_InfoInput;
     private JTextField Length;
     private JTextField Width;
     private JButton [] C_Sizes;
-    private JButton C_Review;
-    private JPanel Review_Panel;
     //sign in
     private JTextField LBL_Username;
     private JTextField LBL_Password;
@@ -40,6 +36,17 @@ public class GUI extends JFrame implements ActionListener
     private JPanel Welcome_m;
     private JPanel ViewCart;
     private JButton Cart;
+    //review and finalize order
+    private JButton Review;
+    private JPanel Review_Panel;
+    private JButton C_Review;
+    private JPanel C_ReviewPanel;
+    private JButton Final;
+    private JPanel FinalPanel;
+    private JButton C_Final;
+    private JPanel C_FinalPanel;
+    private JPanel DisplayPanel;
+    private JPanel C_DisplayPanel;
 
     public  static void main (String [] args)
     {
@@ -161,7 +168,7 @@ public class GUI extends JFrame implements ActionListener
         InfoInput.add(Sizes[3]);
         //place order
         Review_Panel = new JPanel();
-        Review = new JButton("Place order");
+        Review = new JButton("Proceed to cart");
         Review_Panel.add(Review);
 
         //info input GUI for customized clothes
@@ -194,9 +201,9 @@ public class GUI extends JFrame implements ActionListener
         C_InfoInput.add(C_Sizes[3]);
         //place order
         C_ReviewPanel = new JPanel();
-        C_Review = new JButton("Place order");
+        C_Review = new JButton("Proceed to cart");
         C_ReviewPanel.add(C_Review);
-
+        
         //show menu bar
         setJMenuBar(Menu_bar);
 
@@ -214,11 +221,31 @@ public class GUI extends JFrame implements ActionListener
 
             if (button == BTN_login)
             {
-                String welcome = "Welcome to Zen's Designs! Please select your clothing choice " +
-                        "from the menu above.";
-                JOptionPane.showMessageDialog(null, welcome);
-                //if a text field is empty, display error message
+                //error handling
+                String username = "";
+                username = LBL_Username.getText();
+                String password = "";
+                password = LBL_Password.getText();
+                if (username == null || username.isEmpty())
+                {
+                    JOptionPane.showMessageDialog(this, "Please enter your username",
+                            "Input error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                else if (password == null || password.isEmpty())
+                {
+                    JOptionPane.showMessageDialog(this, "Please enter your password",
+                            "Input error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                else
+                {
+                    String welcome = "Welcome to Zen's Designs! Please select your clothing choice " +
+                            "from the menu above.";
+                    JOptionPane.showMessageDialog(null, welcome);
+                }
             }
+
 //          set prices for crochet
             if (button == Sizes[0])
             {
@@ -262,12 +289,35 @@ public class GUI extends JFrame implements ActionListener
                 c_items.setPrice(30);
             }
 
+//          review and finalize order
             if (button == Review)
             {
+                DisplayPanel = new JPanel();
                 //display order
-                //create new button to finalize order
+                FinalPanel = new JPanel();
+                Final = new JButton("Place order");
+                DisplayPanel.add(FinalPanel);
             }
-            // if button to finalize order clicked, display thank you for shopping etc
+            if (button == C_Review)
+            {
+                C_DisplayPanel = new JPanel();
+                //display order
+                C_FinalPanel = new JPanel();
+                C_Final = new JButton("Place order");
+                DisplayPanel.add(C_FinalPanel);
+            }
+            if (button == Final)
+            {
+                String ThankYou = "Thank you for shopping with Zen's designs. " +
+                        "Look out for an email with your tracking information.";
+                JOptionPane.showMessageDialog(null, ThankYou);
+            }
+            if (button == C_Final)
+            {
+                String ThankYou = "Thank you for shopping with Zen's designs. " +
+                        "Look out for an email with your tracking information.";
+                JOptionPane.showMessageDialog(null, ThankYou);
+            }
 
             if (button == Cart)
             {
