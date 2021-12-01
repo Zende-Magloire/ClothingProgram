@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.text.View;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,6 +39,8 @@ public class GUI extends JFrame implements ActionListener
     private JTextField LBL_Username;
     private JTextField LBL_Password;
     private JButton BTN_login;
+    private JPanel ViewCart;
+    private JButton Cart;
 
     public  static void main (String [] args)
     {
@@ -86,6 +89,11 @@ public class GUI extends JFrame implements ActionListener
         Welcome_m.add(new JLabel("Welcome to Zen's Designs! Sign in to shop with rewards or select an item from" +
                 " the menu to continue."));
         add(Welcome_m, BorderLayout.CENTER);
+
+        //view cart
+        JPanel ViewCart = new JPanel();
+        ViewCart.add(new JButton("View cart"));
+        add(ViewCart, BorderLayout.PAGE_END);
 
         // menu set up
         Menu_bar = new JMenuBar();
@@ -208,6 +216,7 @@ public class GUI extends JFrame implements ActionListener
                 String welcome = "Welcome to Zen's Designs! Please select your clothing choice " +
                         "from the menu above.";
                 JOptionPane.showMessageDialog(null, welcome);
+                //if a text field is empty, display error message
             }
 
             if (button == Sizes[0])
@@ -218,9 +227,11 @@ public class GUI extends JFrame implements ActionListener
             if (button == Review)
             {
                 //display order
-                //crete new button to finalize order
+                //create new button to finalize order
             }
             // if button to finalize order clicked, display thank you for shopping etc
+
+            //add a file to load last order
         }
         else if (source instanceof JMenu) {
             JMenu item = (JMenu) source;
