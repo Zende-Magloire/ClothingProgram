@@ -34,11 +34,10 @@ public class GUI extends JFrame implements ActionListener
     private JButton C_Review;
     private JPanel Review_Panel;
     //sign in
-    private JPanel Welcome_m;
-    private JPanel topPanel;
     private JTextField LBL_Username;
     private JTextField LBL_Password;
     private JButton BTN_login;
+    private JPanel Welcome_m;
     private JPanel ViewCart;
     private JButton Cart;
 
@@ -92,7 +91,8 @@ public class GUI extends JFrame implements ActionListener
 
         //view cart
         JPanel ViewCart = new JPanel();
-        ViewCart.add(new JButton("View cart"));
+        JButton Cart = new JButton("View cart");
+        ViewCart.add(Cart);
         add(ViewCart, BorderLayout.PAGE_END);
 
         // menu set up
@@ -196,6 +196,7 @@ public class GUI extends JFrame implements ActionListener
         C_ReviewPanel = new JPanel();
         C_Review = new JButton("Place order");
         C_ReviewPanel.add(C_Review);
+
         //show menu bar
         setJMenuBar(Menu_bar);
 
@@ -218,10 +219,47 @@ public class GUI extends JFrame implements ActionListener
                 JOptionPane.showMessageDialog(null, welcome);
                 //if a text field is empty, display error message
             }
-
+//          set prices for crochet
             if (button == Sizes[0])
             {
-//              set price to $10
+                Crochet items = new Crochet();
+                items.setPrice(10);
+            }
+            if (button == Sizes[1])
+            {
+                Crochet items = new Crochet();
+                items.setPrice(15);
+            }
+            if (button == Sizes[2])
+            {
+                Crochet items = new Crochet();
+                items.setPrice(20);
+            }
+            if (button == Sizes[3])
+            {
+                Crochet items = new Crochet();
+                items.setPrice(25);
+            }
+//          set prices for custom
+            if (button == C_Sizes[0])
+            {
+                Customize c_items = new Customize();
+                c_items.setPrice(15);
+            }
+            if (button == C_Sizes[1])
+            {
+                Customize c_items = new Customize();
+                c_items.setPrice(20);
+            }
+            if (button == C_Sizes[2])
+            {
+                Customize c_items = new Customize();
+                c_items.setPrice(25);
+            }
+            if (button == C_Sizes[3])
+            {
+                Customize c_items = new Customize();
+                c_items.setPrice(30);
             }
 
             if (button == Review)
@@ -231,23 +269,28 @@ public class GUI extends JFrame implements ActionListener
             }
             // if button to finalize order clicked, display thank you for shopping etc
 
-            //add a file to load last order
+            if (button == Cart)
+            {
+                //display previous order
+            }
+
         }
-        else if (source instanceof JMenu) {
+        else if (source instanceof JMenu)
+        {
             JMenu item = (JMenu) source;
 
-//            if (item == Crochet)
-//            {
+//           if (item == top)
+//           {
 //              InfoInput.setLayout(new BoxLayout(InfoInput, BoxLayout.PAGE_AXIS));
 //              add(InfoInput, BorderLayout.NORTH);
 //              add(Review_Panel, BorderLayout.PAGE_END);
-//            }
-//              if (item == Customized_design)
-//            {
-//               C_InfoInput.setLayout(new BoxLayout(InfoInput, BoxLayout.PAGE_AXIS));
-//               add(C_InfoInput, BorderLayout.NORTH);
-//               add(C_ReviewPanel, BorderLayout.PAGE_END)
-//             }
+//           }
+//         if (item == bottom)
+//         {
+//            C_InfoInput.setLayout(new BoxLayout(InfoInput, BoxLayout.PAGE_AXIS));
+//            add(C_InfoInput, BorderLayout.NORTH);
+//            add(C_ReviewPanel, BorderLayout.PAGE_END)
+//         }
         }
 
     }
