@@ -25,6 +25,13 @@ public class Customize extends Clothes
             return D_Width;
     }
 
+
+    @Override
+    public String toString()
+    {
+        return "Your design " + getDesign() + "Length of your design " + getLength() + "Width of " +
+                "your design " + getWidth() + "Size " + getSize();
+    }
 }
 
 

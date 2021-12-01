@@ -27,6 +27,12 @@ public class Crochet extends Clothes
         return Waist_M;
     }
 
+    @Override
+    public String toString()
+    {
+        return "Your design " + getDesign() + "Bust " + getBustMeasure() + "Hips " + getHipsMeasure() + "Waist "
+                + getWaistMeasure() + "Size " + getSize();
+    }
 }
 
 
