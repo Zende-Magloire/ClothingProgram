@@ -1,9 +1,7 @@
 public abstract class Clothes
 {
     private String E_Design;
-    private double Size;
     private double Price;
-
 
     public String getDesign()
     {
@@ -13,11 +11,6 @@ public abstract class Clothes
     public void setDesign(String d)
     {
         E_Design = d;
-    }
-
-    public double getSize()
-    {
-        return Size;
     }
 
     public double getPrice()

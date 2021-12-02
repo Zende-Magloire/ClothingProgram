@@ -49,6 +49,8 @@ public class GUI extends JFrame implements ActionListener
     private JPanel DisplayPanel;
     private  JPanel C_DisplayPanel;
 
+private JDialog InfoFrame;
+
 
     public  static void main (String [] args)
     {
@@ -110,13 +112,23 @@ public class GUI extends JFrame implements ActionListener
         Customized_design = new JMenu("Custom design");
         //crochet menu set up
         JMenuItem top = new JMenuItem("Top");
+        top.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JDialog InfoFrame = new JDialog();
+                InfoFrame.setLocation(239, 100);
+                InfoFrame.setSize(800, 500);
+                InfoFrame.setVisible(true);
+            }
+        });
 //        top.addActionListener(new ActionListener() {
 //            @Override
 //            public void actionPerformed(ActionEvent e) {
 //             //   setVisible(false);
 //             //   InfoFrame.add(InfoInput);
 //                add(InfoInput, BorderLayout.NORTH);
-//             //   InfoFrame.setVisible(true);
+//                JFrame InfoFrame = new JFrame();
+//                InfoFrame.setVisible(true);
 //            //System.out.println("hi");
 //            }
 //        });
@@ -181,7 +193,7 @@ public class GUI extends JFrame implements ActionListener
         Review_Panel = new JPanel();
         Review = new JButton("Proceed to cart");
         Review_Panel.add(Review);
-        add(Review_Panel, BorderLayout.PAGE_END);
+        InfoInput.add(Review_Panel);
         Review.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -231,6 +243,7 @@ public class GUI extends JFrame implements ActionListener
         C_ReviewPanel = new JPanel();
         C_Review = new JButton("Proceed to cart");
         C_ReviewPanel.add(C_Review);
+        C_InfoInput.add(C_ReviewPanel);
         C_Review.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -239,16 +252,12 @@ public class GUI extends JFrame implements ActionListener
                 c_order.setDesign(C_Design.getText());
                 c_order.setLength(Length.getText());
                 c_order.setWidth(Width.getText());
-                String Order = "Your order: \n" + String.valueOf(c_order.getDesign()) + "\nLength of your design: "
+                String Order = "Your order: \n" + String.valueOf(c_order.getDesign()) + " \nLength of your design: "
                         + c_order.getLength() + "\nWidth of your design: " + c_order.getWidth() + "\nPrice: $" +
                         c_order.getPrice();
-                JOptionPane.showConfirmDialog(null, Order);
+                JOptionPane.showInputDialog(null, Order);
             }
         });
-
-        C_InfoInput.setLayout(new BoxLayout(C_InfoInput, BoxLayout.PAGE_AXIS));
-         add(C_ReviewPanel, BorderLayout.PAGE_END);
-         add(C_InfoInput, BorderLayout.NORTH);
 
         //show menu bar
         setJMenuBar(Menu_bar);
@@ -293,24 +302,6 @@ public class GUI extends JFrame implements ActionListener
                 }
             }
 
-            //review and finalize order
-//           else if (button == Review)
-//           {
-//                Crochet order = new Crochet();
-//                DisplayPanel = new JPanel();
-////                  display order
-//                FinalPanel = new JPanel();
-//                Final = new JButton("Place order");
-//                DisplayPanel.add(FinalPanel);
-//           }
-//            else if (button == C_Review)
-//            {
-//                C_DisplayPanel = new JPanel();
-////                  display order
-//                C_FinalPanel = new JPanel();
-//                C_Final = new JButton("Place order");
-//                C_DisplayPanel.add(C_FinalPanel);
-//            }
 //            else if (button == Final)
 //            {
 //                String ThankYou = "Thank you for shopping with Zen's designs. " +
@@ -329,7 +320,7 @@ public class GUI extends JFrame implements ActionListener
 ////                  display previous order
 //            }
 
-        }
+//        }
 
         //show info input panels
 //        else if (source instanceof JMenuItem)
@@ -338,21 +329,19 @@ public class GUI extends JFrame implements ActionListener
 //
 //           if (e.getSource() == top)
 //           {
-////            setVisible(false);
-////              InfoInput.setLayout(new BoxLayout(InfoInput, BoxLayout.PAGE_AXIS));
-////              add(Review_Panel, BorderLayout.PAGE_END);
-////            InfoFrame.add(InfoInput, BorderLayout.NORTH);
-////            InfoFrame.setVisible(true);
+//            setVisible(false);
+//              InfoInput.setLayout(new BoxLayout(InfoInput, BoxLayout.PAGE_AXIS));
+//              add(Review_Panel, BorderLayout.PAGE_END);
 //               System.out.println("hi");
 //           }
-////         if (item == bottom)
-////         {
-////            C_InfoInput.setLayout(new BoxLayout(InfoInput, BoxLayout.PAGE_AXIS));
-////            add(C_InfoInput, BorderLayout.NORTH);
-////            add(C_ReviewPanel, BorderLayout.PAGE_END)
-////         }
-//
-//        }
+//         if (item == bottom)
+//         {
+//            C_InfoInput.setLayout(new BoxLayout(InfoInput, BoxLayout.PAGE_AXIS));
+//            add(C_InfoInput, BorderLayout.NORTH);
+//            add(C_ReviewPanel, BorderLayout.PAGE_END);
+//         }
+
+        }
 
     }
 
