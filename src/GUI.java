@@ -49,7 +49,7 @@ public class GUI extends JFrame implements ActionListener
     private JPanel DisplayPanel;
     private  JPanel C_DisplayPanel;
 
-private JDialog InfoFrame;
+    private JDialog InfoFrame;
 
 
     public  static void main (String [] args)
@@ -106,62 +106,93 @@ private JDialog InfoFrame;
         ViewCart.add(Cart);
         add(ViewCart, BorderLayout.PAGE_END);
 
+        //info input panel layout
+        JDialog InfoFrame = new JDialog();
+        InfoFrame.setLocation(239, 40);
+        InfoFrame.setSize(800, 600);
+        InfoFrame.setTitle("Information Input");
+
         // menu set up
         Menu_bar = new JMenuBar();
         Crochet = new JMenu("Crochet");
         Customized_design = new JMenu("Custom design");
+
         //crochet menu set up
         JMenuItem top = new JMenuItem("Top");
-        top.addActionListener(new ActionListener() {
+        Crochet.add(top);
+        top.addActionListener(new ActionListener()
+        {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JDialog InfoFrame = new JDialog();
-                InfoFrame.setLocation(239, 100);
-                InfoFrame.setSize(800, 500);
                 InfoFrame.setVisible(true);
             }
         });
-//        top.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//             //   setVisible(false);
-//             //   InfoFrame.add(InfoInput);
-//                add(InfoInput, BorderLayout.NORTH);
-//                JFrame InfoFrame = new JFrame();
-//                InfoFrame.setVisible(true);
-//            //System.out.println("hi");
-//            }
-//        });
-        Crochet.add(top);
         JMenuItem bottom = new JMenuItem("Bottom");
-        bottom.addActionListener(this);
         Crochet.add(bottom);
+        bottom.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                InfoFrame.setVisible(true);
+            }
+        });
         JMenuItem swimsuit = new JMenuItem("Swimsuit");
-        swimsuit.addActionListener(this);
         Crochet.add(swimsuit);
+        swimsuit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                InfoFrame.setVisible(true);
+            }
+        });
         Menu_bar.add(Crochet);
+
         //Custom menu set up
         JMenuItem C_top = new JMenuItem("Top");
-        C_top.addActionListener(this);
         Customized_design.add(C_top);
+        C_top.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                InfoFrame.setVisible(true);
+            }
+        });
         JMenuItem C_bottom = new JMenuItem("Bottom");
-        C_bottom.addActionListener(this);
         Customized_design.add(C_bottom);
+        C_bottom.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                InfoFrame.setVisible(true);
+            }
+        });
         JMenuItem C_swimsuit = new JMenuItem("Swimsuit");
-        C_swimsuit.addActionListener(this);
         Customized_design.add(C_swimsuit);
+        C_swimsuit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                InfoFrame.setVisible(true);
+            }
+        });
         JMenuItem dress = new JMenuItem("Dress");
-        dress.addActionListener(this);
         Customized_design.add(dress);
+        dress.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                InfoFrame.setVisible(true);
+            }
+        });
         JMenuItem other = new JMenuItem("Other");
-        other.addActionListener(this);
         Customized_design.add(other);
+        other.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                InfoFrame.setVisible(true);
+            }
+        });
         Menu_bar.add(Customized_design);
 
         //info input GUI for crochet
         JPanel InfoInput = new JPanel();
-        Design = new JTextField(1);
         //clothing description
+        Design = new JTextField(1);
         InfoInput.add(new JLabel("Please enter a detailed description of your desired design"));
         InfoInput.add(Design);
         //measurements
@@ -174,7 +205,7 @@ private JDialog InfoFrame;
         Waist = new JTextField(1);
         InfoInput.add(new JLabel("Please enter your waist measurement (inches)"));
         InfoInput.add(Waist);
-        //size
+        //sizes
         InfoInput.add(new JLabel("Please select your clothing size:"));
         Sizes = new JButton[4];
         Sizes[0] = new JButton("Small");
@@ -194,27 +225,42 @@ private JDialog InfoFrame;
         Review = new JButton("Proceed to cart");
         Review_Panel.add(Review);
         InfoInput.add(Review_Panel);
+
+        //        InfoFrame.add(InfoInput);
+
+        //review crochet order
         Review.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
                 Crochet order = new Crochet();
                 order.setPrice(30);
                 order.setDesign(Design.getText());
                 order.setBustMeasure(Bust.getText());
                 order.setHipsMeasure(Hips.getText());
                 order.setWaistMeasure(Waist.getText());
-                String Order = "Your order: \n" + String.valueOf(order.getDesign()) + " \nBust: " +
-                        order.getBustMeasure() + "\nHips: " + order.getHipsMeasure() + "\nWaist: " +
-                        order.getWaistMeasure() + "\nPrice: $" + order.getPrice();
-                JOptionPane.showConfirmDialog(null, Order);
+                String Order = "Your order: \nYour Design:\n" + String.valueOf(order.getDesign()) +
+                        " \nBust: " + order.getBustMeasure() + "\nHips: " + order.getHipsMeasure() +
+                        "\nWaist: " + order.getWaistMeasure() + "\nPrice: $" + order.getPrice();
+                JOptionPane pane = new JOptionPane();
+                JOptionPane.showMessageDialog(null,Order,"Review your order",
+                        JOptionPane.INFORMATION_MESSAGE);
+                Object value =  pane.getInputValue();
+                System.out.println(pane.getInputValue().toString());
+                if(value == JOptionPane.UNINITIALIZED_VALUE)
+                {
+                    String ThankYou = "Thank you for shopping with Zen's designs. " +
+                            "Look out for an email with your tracking information.";
+                    JOptionPane.showMessageDialog(null, ThankYou, "Thank You!!",
+                            JOptionPane.INFORMATION_MESSAGE);
+                }
             }
         });
 
-
         //info input GUI for customized clothes
         JPanel C_InfoInput = new JPanel();
-        C_Design = new JTextField(1);
         //clothing description
+        C_Design = new JTextField(1);
         C_InfoInput.add(new JLabel("Please enter a detailed description of your desired design"));
         C_InfoInput.add(C_Design);
         //measurements
@@ -244,20 +290,35 @@ private JDialog InfoFrame;
         C_Review = new JButton("Proceed to cart");
         C_ReviewPanel.add(C_Review);
         C_InfoInput.add(C_ReviewPanel);
-        C_Review.addActionListener(new ActionListener() {
+        //review customized order
+        C_Review.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
                 Customize c_order = new Customize();
                 c_order.setPrice(40);
                 c_order.setDesign(C_Design.getText());
                 c_order.setLength(Length.getText());
                 c_order.setWidth(Width.getText());
-                String Order = "Your order: \n" + String.valueOf(c_order.getDesign()) + " \nLength of your design: "
-                        + c_order.getLength() + "\nWidth of your design: " + c_order.getWidth() + "\nPrice: $" +
-                        c_order.getPrice();
-                JOptionPane.showInputDialog(null, Order);
-            }
+                String Order = "Your order: \nYour Design:\n" + String.valueOf(c_order.getDesign()) +
+                        " \nLength of your design: " + c_order.getLength() + "\nWidth of your design: "
+                        + c_order.getWidth() + "\nPrice: $" + c_order.getPrice();
+                JOptionPane pane = new JOptionPane();
+                JOptionPane.showMessageDialog(null,Order,"Review your order",
+                        JOptionPane.INFORMATION_MESSAGE);
+                Object value =  pane.getInputValue();
+                System.out.println(pane.getInputValue().toString());
+                if(value == JOptionPane.UNINITIALIZED_VALUE)
+                {
+                    String ThankYou = "Thank you for shopping with Zen's designs. " +
+                        "Look out for an email with your tracking information.";
+                    JOptionPane.showMessageDialog(null, ThankYou, "Thank You!!",
+                            JOptionPane.INFORMATION_MESSAGE);
+                }
+                }
         });
+
 
         //show menu bar
         setJMenuBar(Menu_bar);
@@ -302,19 +363,7 @@ private JDialog InfoFrame;
                 }
             }
 
-//            else if (button == Final)
-//            {
-//                String ThankYou = "Thank you for shopping with Zen's designs. " +
-//                        "Look out for an email with your tracking information.";
-//                JOptionPane.showMessageDialog(null, ThankYou);
-//            }
-//            else if (button == C_Final)
-//            {
-//                String ThankYou = "Thank you for shopping with Zen's designs. " +
-//                        "Look out for an email with your tracking information.";
-//                JOptionPane.showMessageDialog(null, ThankYou);
-//            }
-//
+            
 //            else if (button == Cart)
 //            {
 ////                  display previous order
@@ -336,7 +385,7 @@ private JDialog InfoFrame;
 //           }
 //         if (item == bottom)
 //         {
-//            C_InfoInput.setLayout(new BoxLayout(InfoInput, BoxLayout.PAGE_AXIS));
+//            C_InfoInput.setLayout(new BoxLayout(C_InfoInput, BoxLayout.PAGE_AXIS));
 //            add(C_InfoInput, BorderLayout.NORTH);
 //            add(C_ReviewPanel, BorderLayout.PAGE_END);
 //         }

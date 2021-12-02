@@ -20,7 +20,7 @@ public class Customize extends Clothes
 
     public void setWidth(String w)
     {
-        D_Length = w;
+        D_Width = w;
     }
 }
 
