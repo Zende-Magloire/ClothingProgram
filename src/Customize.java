@@ -1,30 +1,26 @@
 public class Customize extends Clothes
 {
-    public double D_Length;
-    public double D_Width;
+    public String D_Length;
+    public String D_Width;
 
-    public double getLength()
+    public String getLength()
     {
-        if (D_Length <= 0)
-            return 0;
-        else
-            return D_Length;
+        return D_Length;
     }
 
-    public double getWidth()
+    public String getWidth()
     {
-        if (D_Width <= 0)
-            return 0;
-        else
-            return D_Width;
+        return D_Width;
     }
 
-
-    @Override
-    public String toString()
+    public void setLength(String l)
     {
-        return "Your design " + getDesign() + "Length of your design " + getLength() + "Width of " +
-                "your design " + getWidth() + "Size " + getSize();
+        D_Length = l;
+    }
+
+    public void setWidth(String w)
+    {
+        D_Length = w;
     }
 }
 

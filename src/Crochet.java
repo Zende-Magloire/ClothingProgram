@@ -1,29 +1,37 @@
 public class Crochet extends Clothes
 {
-    private double Bust_M;
-    private double Hips_M;
-    private double Waist_M;
+    private String Bust_M;
+    private String Hips_M;
+    private String Waist_M;
 
-    public double getBustMeasure()
+    public String getBustMeasure()
     {
         return Bust_M;
     }
 
-    public double getHipsMeasure()
+    public void setBustMeasure(String b)
+    {
+        Bust_M = b;
+    }
+
+    public String getHipsMeasure()
     {
         return Hips_M;
     }
 
-    public double getWaistMeasure()
+    public void setHipsMeasure(String h)
+    {
+        Hips_M = h;
+    }
+
+    public String getWaistMeasure()
     {
         return Waist_M;
     }
 
-    @Override
-    public String toString()
+    public void setWaistMeasure(String w)
     {
-        return "Your design " + getDesign() + "Bust " + getBustMeasure() + "Hips " + getHipsMeasure() + "Waist "
-                + getWaistMeasure() + "Size " + getSize();
+        Waist_M = w;
     }
 }
 

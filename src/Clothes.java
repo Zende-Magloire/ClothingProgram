@@ -10,6 +10,11 @@ public abstract class Clothes
         return E_Design;
     }
 
+    public void setDesign(String d)
+    {
+        E_Design = d;
+    }
+
     public double getSize()
     {
         return Size;
@@ -20,7 +25,7 @@ public abstract class Clothes
         return Price;
     }
 
-    public void setPrice(float p)
+    public void setPrice(double p)
     {
         Price = p;
     }
