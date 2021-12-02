@@ -50,6 +50,7 @@ public class GUI extends JFrame implements ActionListener
     private  JPanel C_DisplayPanel;
 
     private JDialog InfoFrame;
+    private JDialog C_InfoFrame;
 
 
     public  static void main (String [] args)
@@ -92,13 +93,13 @@ public class GUI extends JFrame implements ActionListener
         topPanel.add(new JLabel("Password: "));
         topPanel.add(LBL_Password);
         topPanel.add(BTN_login);
-       // add(topPanel, BorderLayout.PAGE_START);
+        add(topPanel, BorderLayout.PAGE_START);
 
         //welcome message
         JPanel Welcome_m = new JPanel();
         Welcome_m.add(new JLabel("Welcome to Zen's Designs! Sign in to shop with rewards or select an item from" +
                 " the menu to continue."));
-       // add(Welcome_m, BorderLayout.CENTER);
+        add(Welcome_m, BorderLayout.CENTER);
 
         //view cart
         JPanel ViewCart = new JPanel();
@@ -106,11 +107,16 @@ public class GUI extends JFrame implements ActionListener
         ViewCart.add(Cart);
         add(ViewCart, BorderLayout.PAGE_END);
 
-        //info input panel layout
+        //info input panel layout (crochet)
         JDialog InfoFrame = new JDialog();
         InfoFrame.setLocation(239, 40);
         InfoFrame.setSize(800, 600);
         InfoFrame.setTitle("Information Input");
+        //info input panel layout (crochet)
+        JDialog C_InfoFrame = new JDialog();
+        C_InfoFrame.setLocation(239, 40);
+        C_InfoFrame.setSize(800, 600);
+        C_InfoFrame.setTitle("Information Input");
 
         // menu set up
         Menu_bar = new JMenuBar();
@@ -123,23 +129,28 @@ public class GUI extends JFrame implements ActionListener
         top.addActionListener(new ActionListener()
         {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                InfoFrame.setVisible(true);
-            }
+            public void actionPerformed(ActionEvent e)
+                {
+                    InfoFrame.setVisible(true);
+                }
         });
         JMenuItem bottom = new JMenuItem("Bottom");
         Crochet.add(bottom);
-        bottom.addActionListener(new ActionListener() {
+        bottom.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
                 InfoFrame.setVisible(true);
             }
         });
         JMenuItem swimsuit = new JMenuItem("Swimsuit");
         Crochet.add(swimsuit);
-        swimsuit.addActionListener(new ActionListener() {
+        swimsuit.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
                 InfoFrame.setVisible(true);
             }
         });
@@ -152,7 +163,7 @@ public class GUI extends JFrame implements ActionListener
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                InfoFrame.setVisible(true);
+                C_InfoFrame.setVisible(true);
             }
         });
         JMenuItem C_bottom = new JMenuItem("Bottom");
@@ -160,7 +171,7 @@ public class GUI extends JFrame implements ActionListener
         C_bottom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                InfoFrame.setVisible(true);
+                C_InfoFrame.setVisible(true);
             }
         });
         JMenuItem C_swimsuit = new JMenuItem("Swimsuit");
@@ -168,7 +179,7 @@ public class GUI extends JFrame implements ActionListener
         C_swimsuit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                InfoFrame.setVisible(true);
+                C_InfoFrame.setVisible(true);
             }
         });
         JMenuItem dress = new JMenuItem("Dress");
@@ -176,7 +187,7 @@ public class GUI extends JFrame implements ActionListener
         dress.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                InfoFrame.setVisible(true);
+                C_InfoFrame.setVisible(true);
             }
         });
         JMenuItem other = new JMenuItem("Other");
@@ -184,9 +195,10 @@ public class GUI extends JFrame implements ActionListener
         other.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                InfoFrame.setVisible(true);
+                C_InfoFrame.setVisible(true);
             }
         });
+        //add everything to the menu bar
         Menu_bar.add(Customized_design);
 
         //info input GUI for crochet
@@ -224,9 +236,9 @@ public class GUI extends JFrame implements ActionListener
         Review_Panel = new JPanel();
         Review = new JButton("Proceed to cart");
         Review_Panel.add(Review);
-        InfoInput.add(Review_Panel);
-
-        //        InfoFrame.add(InfoInput);
+        InfoInput.setLayout(new BoxLayout(InfoInput, BoxLayout.PAGE_AXIS));
+        InfoFrame.add(InfoInput, BorderLayout.NORTH);
+        InfoFrame.add(Review_Panel, BorderLayout.PAGE_END);
 
         //review crochet order
         Review.addActionListener(new ActionListener() {
@@ -239,7 +251,7 @@ public class GUI extends JFrame implements ActionListener
                 order.setBustMeasure(Bust.getText());
                 order.setHipsMeasure(Hips.getText());
                 order.setWaistMeasure(Waist.getText());
-                String Order = "Your order: \nYour Design:\n" + String.valueOf(order.getDesign()) +
+                String Order = "Your Design:\n" + String.valueOf(order.getDesign()) + "\n" +
                         " \nBust: " + order.getBustMeasure() + "\nHips: " + order.getHipsMeasure() +
                         "\nWaist: " + order.getWaistMeasure() + "\nPrice: $" + order.getPrice();
                 JOptionPane pane = new JOptionPane();
@@ -289,7 +301,11 @@ public class GUI extends JFrame implements ActionListener
         C_ReviewPanel = new JPanel();
         C_Review = new JButton("Proceed to cart");
         C_ReviewPanel.add(C_Review);
-        C_InfoInput.add(C_ReviewPanel);
+        C_InfoInput.setLayout(new BoxLayout(C_InfoInput, BoxLayout.PAGE_AXIS));
+        C_InfoFrame.add(C_InfoInput, BorderLayout.NORTH);
+        C_InfoFrame.add(C_ReviewPanel, BorderLayout.PAGE_END);
+
+
         //review customized order
         C_Review.addActionListener(new ActionListener()
         {
@@ -301,7 +317,7 @@ public class GUI extends JFrame implements ActionListener
                 c_order.setDesign(C_Design.getText());
                 c_order.setLength(Length.getText());
                 c_order.setWidth(Width.getText());
-                String Order = "Your order: \nYour Design:\n" + String.valueOf(c_order.getDesign()) +
+                String Order = "Your Design:\n" + String.valueOf(c_order.getDesign()) + "\n" +
                         " \nLength of your design: " + c_order.getLength() + "\nWidth of your design: "
                         + c_order.getWidth() + "\nPrice: $" + c_order.getPrice();
                 JOptionPane pane = new JOptionPane();
@@ -318,7 +334,6 @@ public class GUI extends JFrame implements ActionListener
                 }
                 }
         });
-
 
         //show menu bar
         setJMenuBar(Menu_bar);
@@ -363,7 +378,7 @@ public class GUI extends JFrame implements ActionListener
                 }
             }
 
-            
+
 //            else if (button == Cart)
 //            {
 ////                  display previous order
@@ -378,10 +393,9 @@ public class GUI extends JFrame implements ActionListener
 //
 //           if (e.getSource() == top)
 //           {
-//            setVisible(false);
-//              InfoInput.setLayout(new BoxLayout(InfoInput, BoxLayout.PAGE_AXIS));
-//              add(Review_Panel, BorderLayout.PAGE_END);
-//               System.out.println("hi");
+//            InfoInput.setLayout(new BoxLayout(InfoInput, BoxLayout.PAGE_AXIS));
+//            add(InfoInput, BorderLayout.NORTH);
+//            add(Review_Panel, BorderLayout.PAGE_END);
 //           }
 //         if (item == bottom)
 //         {
