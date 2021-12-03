@@ -74,7 +74,7 @@ public class GUI extends JFrame implements ActionListener {
         LBL_Password = new JTextField(15);
         BTN_login = new JButton("Sign in");
         BTN_login.addActionListener(this);
-        topPanel.add(new JLabel("Username: "));
+        topPanel.add(new JLabel("E-mail: "));
         topPanel.add(LBL_Username);
         topPanel.add(new JLabel("Password: "));
         topPanel.add(LBL_Password);
@@ -352,8 +352,8 @@ public class GUI extends JFrame implements ActionListener {
                 String password = "";
                 password = LBL_Password.getText();
                 if (username == null || username.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "You did not enter a username.",
-                            "Please enter your username", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "You did not enter an email" +
+                                    " address.", "Please enter your email", JOptionPane.ERROR_MESSAGE);
                     return;
                 } else if (password == null || password.isEmpty()) {
                     JOptionPane.showMessageDialog(this, "You did not enter a password.",
