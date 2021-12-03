@@ -3,8 +3,10 @@ import javax.swing.text.View;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
-public class GUI extends JFrame implements ActionListener
+public class GUI extends JFrame implements ActionListener, WindowListener
 {
     //menu
     private JMenuBar Menu_bar;
@@ -90,8 +92,8 @@ public class GUI extends JFrame implements ActionListener
 
         //welcome message
         JPanel Welcome_m = new JPanel();
-        Welcome_m.add(new JLabel("Welcome to Zen's Designs! Sign in to shop with rewards or select an item from" +
-                " the menu to continue."));
+        Welcome_m.add(new JLabel("Welcome to Zen's Designs! Sign in to shop with rewards or select an" +
+                " item from the menu to continue."));
         add(Welcome_m, BorderLayout.CENTER);
 
         //view cart
@@ -208,7 +210,8 @@ public class GUI extends JFrame implements ActionListener
         JPanel InfoInput = new JPanel();
         //clothing description
         Design = new JTextField(1);
-        InfoInput.add(new JLabel("Please enter a detailed description of your desired design"));
+        InfoInput.add(new JLabel("Please enter a detailed description of your desired design" +
+                " (Colour, style, patterns, etc)"));
         InfoInput.add(Design);
         //measurements
         Bust = new JTextField(1);
@@ -248,12 +251,28 @@ public class GUI extends JFrame implements ActionListener
             @Override
             public void actionPerformed(ActionEvent e)
             {
+                //handle bad user input
+                if(Design.getText().isEmpty())
+                {
+                    JOptionPane.showMessageDialog(null, "Please enter your desired design",
+                            "You did not enter a design.", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                if(Bust.getText().isEmpty() || Hips.getText().isEmpty() || Waist.getText().isEmpty())
+                {
+                    JOptionPane.showMessageDialog(null, "At least one of your measurements " +
+                            "is missing. Please ensure that you enter all your measurements.", "You did " +
+                            "not enter all your measurements.", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                //read in info
                 Crochet order = new Crochet();
                 order.setPrice(30);
                 order.setDesign(Design.getText());
                 order.setBustMeasure(Bust.getText());
                 order.setHipsMeasure(Hips.getText());
                 order.setWaistMeasure(Waist.getText());
+                //display order
                 String Order = "Your Design:\n" + String.valueOf(order.getDesign()) + "\n" +
                         " \nBust: " + order.getBustMeasure() + "\nHips: " + order.getHipsMeasure() +
                         "\nWaist: " + order.getWaistMeasure() + "\nPrice: $" + order.getPrice();
@@ -261,7 +280,6 @@ public class GUI extends JFrame implements ActionListener
                 JOptionPane.showMessageDialog(null,Order,"Review your order",
                         JOptionPane.INFORMATION_MESSAGE);
                 Object value =  pane.getInputValue();
-                System.out.println(pane.getInputValue().toString());
                 if(value == JOptionPane.UNINITIALIZED_VALUE)
                 {
                     String ThankYou = "Thank you for shopping with Zen's designs. " +
@@ -276,7 +294,8 @@ public class GUI extends JFrame implements ActionListener
         JPanel C_InfoInput = new JPanel();
         //clothing description
         C_Design = new JTextField(1);
-        C_InfoInput.add(new JLabel("Please enter a detailed description of your desired design"));
+        C_InfoInput.add(new JLabel("Please enter a detailed description of your desired design" +
+                " (Colour, style, patterns, etc)"));
         C_InfoInput.add(C_Design);
         //measurements
         Length = new JTextField(1);
@@ -314,11 +333,28 @@ public class GUI extends JFrame implements ActionListener
             @Override
             public void actionPerformed(ActionEvent e)
             {
+                //handle bad user input
+                if(C_Design.getText().isEmpty())
+                {
+                    JOptionPane.showMessageDialog(null, "Please enter your desired design",
+                            "You did not enter a design.", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                //handle bad user input
+                if(Length.getText().isEmpty() || Width.getText().isEmpty())
+                {
+                    JOptionPane.showMessageDialog(null, "At least one of your dimensions"+
+                            " is missing. Please ensure that you enter how long and how wide you want your design.",
+                            "You did not enter all your dimensions.", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                //read in info
                 Customize c_order = new Customize();
                 c_order.setPrice(40);
                 c_order.setDesign(C_Design.getText());
                 c_order.setLength(Length.getText());
                 c_order.setWidth(Width.getText());
+                //display order
                 String Order = "Your Design:\n" + String.valueOf(c_order.getDesign()) + "\n" +
                         " \nLength of your design: " + c_order.getLength() + "\nWidth of your design: "
                         + c_order.getWidth() + "\nPrice: $" + c_order.getPrice();
@@ -326,7 +362,6 @@ public class GUI extends JFrame implements ActionListener
                 JOptionPane.showMessageDialog(null,Order,"Review your order",
                         JOptionPane.INFORMATION_MESSAGE);
                 Object value =  pane.getInputValue();
-                System.out.println(pane.getInputValue().toString());
                 if(value == JOptionPane.UNINITIALIZED_VALUE)
                 {
                     String ThankYou = "Thank you for shopping with Zen's designs. " +
@@ -337,7 +372,7 @@ public class GUI extends JFrame implements ActionListener
                 }
         });
 
-        //show menu bar
+       //show menu bar
         setJMenuBar(Menu_bar);
     }
 
@@ -391,5 +426,40 @@ public class GUI extends JFrame implements ActionListener
 
     }
 
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e)
+    {
+
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
+    }
 }
 
