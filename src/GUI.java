@@ -1,13 +1,11 @@
 import javax.swing.*;
-import javax.swing.text.View;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 
-public class GUI extends JFrame implements ActionListener, WindowListener
-{
+
+public class GUI extends JFrame implements ActionListener {
+
     //menu
     private JMenuBar Menu_bar;
     private JMenu Crochet;
@@ -26,19 +24,17 @@ public class GUI extends JFrame implements ActionListener, WindowListener
     private JTextField Bust;
     private JTextField Hips;
     private JTextField Waist;
-    private JButton [] Sizes;
+    private JButton[] Sizes;
     private JPanel C_InfoInput;
     private JTextField C_Design;
     private JTextField Length;
     private JTextField Width;
-    private JButton [] C_Sizes;
+    private JButton[] C_Sizes;
     //sign in
     private JTextField LBL_Username;
     private JTextField LBL_Password;
     private JButton BTN_login;
     private JPanel Welcome_m;
-    private JPanel ViewCart;
-    private JButton Cart;
     //review and finalize order
     private JButton Review;
     private JPanel Review_Panel;
@@ -48,28 +44,23 @@ public class GUI extends JFrame implements ActionListener, WindowListener
     private JDialog C_InfoFrame;
 
 
-    public  static void main (String [] args)
-    {
-    EventQueue.invokeLater(
-            new Runnable()
-            {
-                @Override
-                public void run()
-                {
-                    new GUI();
+    public static void main(String[] args) {
+        EventQueue.invokeLater(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        new GUI();
+                    }
                 }
-            }
-    );
+        );
     }
 
-    public GUI()
-    {
+    public GUI() {
         //set up GUI
         GUISetUp();
     }
 
-    private void GUISetUp()
-    {
+    private void GUISetUp() {
         //frame set up
         setTitle("Zen's Designs");
         setSize(800, 600);
@@ -96,12 +87,6 @@ public class GUI extends JFrame implements ActionListener, WindowListener
                 " item from the menu to continue."));
         add(Welcome_m, BorderLayout.CENTER);
 
-        //view cart
-        JPanel ViewCart = new JPanel();
-        JButton Cart = new JButton("View cart");
-        ViewCart.add(Cart);
-        add(ViewCart, BorderLayout.PAGE_END);
-
         //info input frame layout (crochet)
         JDialog InfoFrame = new JDialog();
         InfoFrame.setLocation(239, 40);
@@ -121,31 +106,25 @@ public class GUI extends JFrame implements ActionListener, WindowListener
         //crochet menu set up
         JMenuItem top = new JMenuItem("Top");
         Crochet.add(top);
-        top.addActionListener(new ActionListener()
-        {
+        top.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e)
-                {
-                    InfoFrame.setVisible(true);
-                }
+            public void actionPerformed(ActionEvent e) {
+                InfoFrame.setVisible(true);
+            }
         });
         JMenuItem bottom = new JMenuItem("Bottom");
         Crochet.add(bottom);
-        bottom.addActionListener(new ActionListener()
-        {
+        bottom.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
                 InfoFrame.setVisible(true);
             }
         });
         JMenuItem swimsuit = new JMenuItem("Swimsuit");
         Crochet.add(swimsuit);
-        swimsuit.addActionListener(new ActionListener()
-        {
+        swimsuit.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
                 InfoFrame.setVisible(true);
             }
         });
@@ -155,51 +134,41 @@ public class GUI extends JFrame implements ActionListener, WindowListener
         //Custom menu set up
         JMenuItem C_top = new JMenuItem("Top");
         Customized_design.add(C_top);
-        C_top.addActionListener(new ActionListener()
-        {
+        C_top.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
                 C_InfoFrame.setVisible(true);
             }
         });
         JMenuItem C_bottom = new JMenuItem("Bottom");
         Customized_design.add(C_bottom);
-        C_bottom.addActionListener(new ActionListener()
-        {
+        C_bottom.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
                 C_InfoFrame.setVisible(true);
             }
         });
         JMenuItem C_swimsuit = new JMenuItem("Swimsuit");
         Customized_design.add(C_swimsuit);
-        C_swimsuit.addActionListener(new ActionListener()
-        {
+        C_swimsuit.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
                 C_InfoFrame.setVisible(true);
             }
         });
         JMenuItem dress = new JMenuItem("Dress");
         Customized_design.add(dress);
-        dress.addActionListener(new ActionListener()
-        {
+        dress.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
                 C_InfoFrame.setVisible(true);
             }
         });
         JMenuItem other = new JMenuItem("Other");
         Customized_design.add(other);
-        other.addActionListener(new ActionListener()
-        {
+        other.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
                 C_InfoFrame.setVisible(true);
             }
         });
@@ -249,20 +218,17 @@ public class GUI extends JFrame implements ActionListener, WindowListener
         //review crochet order
         Review.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
                 //handle bad user input
-                if(Design.getText().isEmpty())
-                {
+                if (Design.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Please enter your desired design",
                             "You did not enter a design.", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                if(Bust.getText().isEmpty() || Hips.getText().isEmpty() || Waist.getText().isEmpty())
-                {
-                    JOptionPane.showMessageDialog(null, "At least one of your measurements " +
-                            "is missing. Please ensure that you enter all your measurements.", "You did " +
-                            "not enter all your measurements.", JOptionPane.ERROR_MESSAGE);
+                if (Bust.getText().isEmpty() || Hips.getText().isEmpty() || Waist.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "At least one of your measurements"
+                            + " is missing. Please ensure that you enter all your measurements.", "You did"
+                            + " not enter all your measurements.", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 //read in info
@@ -277,11 +243,10 @@ public class GUI extends JFrame implements ActionListener, WindowListener
                         " \nBust: " + order.getBustMeasure() + "\nHips: " + order.getHipsMeasure() +
                         "\nWaist: " + order.getWaistMeasure() + "\nPrice: $" + order.getPrice();
                 JOptionPane pane = new JOptionPane();
-                JOptionPane.showMessageDialog(null,Order,"Review your order",
+                JOptionPane.showMessageDialog(null, Order, "Review your order",
                         JOptionPane.INFORMATION_MESSAGE);
-                Object value =  pane.getInputValue();
-                if(value == JOptionPane.UNINITIALIZED_VALUE)
-                {
+                Object value = pane.getInputValue();
+                if (value == JOptionPane.UNINITIALIZED_VALUE) {
                     String ThankYou = "Thank you for shopping with Zen's designs. " +
                             "Look out for an email with your tracking information.";
                     JOptionPane.showMessageDialog(null, ThankYou, "Thank You!!",
@@ -328,24 +293,21 @@ public class GUI extends JFrame implements ActionListener, WindowListener
         C_InfoFrame.add(C_InfoInput, BorderLayout.NORTH);
         C_InfoFrame.add(C_ReviewPanel, BorderLayout.PAGE_END);
         //review customized order
-        C_Review.addActionListener(new ActionListener()
-        {
+        C_Review.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
                 //handle bad user input
-                if(C_Design.getText().isEmpty())
-                {
+                if (C_Design.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Please enter your desired design",
                             "You did not enter a design.", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 //handle bad user input
-                if(Length.getText().isEmpty() || Width.getText().isEmpty())
-                {
+                if (Length.getText().isEmpty() || Width.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "At least one of your dimensions"+
-                            " is missing. Please ensure that you enter how long and how wide you want your design.",
-                            "You did not enter all your dimensions.", JOptionPane.ERROR_MESSAGE);
+                                    " is missing. Please ensure that you enter how long and how wide you want"+
+                                    " your design.", "You did not enter all your dimensions.",
+                                    JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 //read in info
@@ -359,107 +321,55 @@ public class GUI extends JFrame implements ActionListener, WindowListener
                         " \nLength of your design: " + c_order.getLength() + "\nWidth of your design: "
                         + c_order.getWidth() + "\nPrice: $" + c_order.getPrice();
                 JOptionPane pane = new JOptionPane();
-                JOptionPane.showMessageDialog(null,Order,"Review your order",
+                JOptionPane.showMessageDialog(null, Order, "Review your order",
                         JOptionPane.INFORMATION_MESSAGE);
-                Object value =  pane.getInputValue();
-                if(value == JOptionPane.UNINITIALIZED_VALUE)
-                {
+                Object value = pane.getInputValue();
+                if (value == JOptionPane.UNINITIALIZED_VALUE) {
                     String ThankYou = "Thank you for shopping with Zen's designs. " +
-                        "Look out for an email with your tracking information.";
+                            "Look out for an email with your tracking information.";
                     JOptionPane.showMessageDialog(null, ThankYou, "Thank You!!",
                             JOptionPane.INFORMATION_MESSAGE);
                 }
-                }
+            }
         });
 
-       //show menu bar
+        //show menu bar
         setJMenuBar(Menu_bar);
     }
 
     @Override
-    public void actionPerformed(ActionEvent e)
-    {
+    public void actionPerformed(ActionEvent e) {
 
         Object source = e.getSource();
 
-        if (source instanceof JButton)
-        {
-            JButton button = (JButton)source;
+        if (source instanceof JButton) {
+            JButton button = (JButton) source;
 
-            if (button == BTN_login)
-            {
+            if (button == BTN_login) {
                 //sign in bad user input handling
                 String username = "";
                 username = LBL_Username.getText();
                 String password = "";
                 password = LBL_Password.getText();
-                if (username == null || username.isEmpty())
-                {
+                if (username == null || username.isEmpty()) {
                     JOptionPane.showMessageDialog(this, "You did not enter a username.",
                             "Please enter your username", JOptionPane.ERROR_MESSAGE);
                     return;
-                }
-                else if (password == null || password.isEmpty())
-                {
+                } else if (password == null || password.isEmpty()) {
                     JOptionPane.showMessageDialog(this, "You did not enter a password.",
                             "Please enter your password", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 //welcome
-                else
-                {
+                else {
                     String welcome = "Welcome to Zen's Designs! Please select your clothing choice " +
                             "from the menu above.";
                     JOptionPane.showMessageDialog(null, welcome);
                 }
             }
 
-
-//            else if (button == Cart)
-//            {
-////                  display previous order
-//            }
-
-//        }
-
         }
 
     }
 
-    @Override
-    public void windowOpened(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowClosing(WindowEvent e)
-    {
-
-    }
-
-    @Override
-    public void windowClosed(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowIconified(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowDeiconified(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowActivated(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowDeactivated(WindowEvent e) {
-
-    }
 }
-
