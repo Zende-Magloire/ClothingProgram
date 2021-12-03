@@ -31,6 +31,7 @@ public class GUI extends JFrame implements ActionListener {
     private JTextField Width;
     private JButton[] C_Sizes;
     //sign in
+    private JPanel topPanel;
     private JTextField LBL_Username;
     private JTextField LBL_Password;
     private JButton BTN_login;
@@ -239,9 +240,9 @@ public class GUI extends JFrame implements ActionListener {
                 order.setHipsMeasure(Hips.getText());
                 order.setWaistMeasure(Waist.getText());
                 //display order
-                String Order = "Your Design:\n" + String.valueOf(order.getDesign()) + "\n" +
+                String Order = "Your Design: \n" + String.valueOf(order.getDesign()) +
                         " \nBust: " + order.getBustMeasure() + "\nHips: " + order.getHipsMeasure() +
-                        "\nWaist: " + order.getWaistMeasure() + "\nPrice: $" + order.getPrice();
+                        "\nWaist: " + order.getWaistMeasure() +"\n" + "\nPrice: $" + order.getPrice();
                 JOptionPane pane = new JOptionPane();
                 JOptionPane.showMessageDialog(null, Order, "Review your order",
                         JOptionPane.INFORMATION_MESSAGE);
@@ -317,9 +318,9 @@ public class GUI extends JFrame implements ActionListener {
                 c_order.setLength(Length.getText());
                 c_order.setWidth(Width.getText());
                 //display order
-                String Order = "Your Design:\n" + String.valueOf(c_order.getDesign()) + "\n" +
+                String Order = "Your Design: \n" + String.valueOf(c_order.getDesign()) +
                         " \nLength of your design: " + c_order.getLength() + "\nWidth of your design: "
-                        + c_order.getWidth() + "\nPrice: $" + c_order.getPrice();
+                        + c_order.getWidth() + "\n" + "\nPrice: $" + c_order.getPrice();
                 JOptionPane pane = new JOptionPane();
                 JOptionPane.showMessageDialog(null, Order, "Review your order",
                         JOptionPane.INFORMATION_MESSAGE);
@@ -361,7 +362,8 @@ public class GUI extends JFrame implements ActionListener {
                     return;
                 }
                 //welcome
-                else {
+                else
+                {
                     String welcome = "Welcome to Zen's Designs! Please select your clothing choice " +
                             "from the menu above.";
                     JOptionPane.showMessageDialog(null, welcome);
